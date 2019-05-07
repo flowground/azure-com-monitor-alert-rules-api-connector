@@ -1,0 +1,151 @@
+{
+    "title": "MonitorManagementClient",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/azure.com/monitor-alertRules_API/2016-03-01/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://management.azure.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "azure_auth": {
+                "label": "Azure Active Directory OAuth2 Flow",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://login.microsoftonline.com/common/oauth2/authorize"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "AlertRules_ListBySubscription": {
+            "main": "./lib/actions/AlertRules_ListBySubscription.js",
+            "title": "List the alert rules within a subscription.",
+            "description": "List the alert rules within a subscription.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/AlertRules_ListBySubscription.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "AlertRules_ListByResourceGroup": {
+            "main": "./lib/actions/AlertRules_ListByResourceGroup.js",
+            "title": "List the alert rules within a resource group.",
+            "description": "List the alert rules within a resource group.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/AlertRules_ListByResourceGroup.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "AlertRules_Delete": {
+            "main": "./lib/actions/AlertRules_Delete.js",
+            "title": "Deletes an alert rule",
+            "description": "Deletes an alert rule",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/AlertRules_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "AlertRules_Get": {
+            "main": "./lib/actions/AlertRules_Get.js",
+            "title": "Gets an alert rule",
+            "description": "Gets an alert rule",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/AlertRules_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "AlertRules_Update": {
+            "main": "./lib/actions/AlertRules_Update.js",
+            "title": "Updates an existing AlertRuleResource. To update other fields use the CreateOrUpdate method.",
+            "description": "Updates an existing AlertRuleResource. To update other fields use the CreateOrUpdate method.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/AlertRules_Update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "AlertRules_CreateOrUpdate": {
+            "main": "./lib/actions/AlertRules_CreateOrUpdate.js",
+            "title": "Creates or updates an alert rule.",
+            "description": "Creates or updates an alert rule.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/AlertRules_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

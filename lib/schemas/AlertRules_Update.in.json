@@ -1,0 +1,118 @@
+{
+    "type": "object",
+    "properties": {
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "ruleName": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "The alert rule object for patch operations.",
+            "properties": {
+                "properties": {
+                    "description": "The properties of an alert rule.",
+                    "x-ms-client-flatten": true,
+                    "properties": {
+                        "actions": {
+                            "description": "the array of actions that are performed when the alert rule becomes active, and when an alert condition is resolved.",
+                            "items": {
+                                "description": "The action that is performed when the alert rule becomes active, and when an alert condition is resolved.",
+                                "discriminator": {
+                                    "propertyName": "odata.type"
+                                },
+                                "properties": {
+                                    "odata.type": {
+                                        "description": "specifies the type of the action. There are two types of actions: RuleEmailAction and RuleWebhookAction.",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "odata.type"
+                                ],
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "condition": {
+                            "description": "the condition that results in the alert rule being activated.",
+                            "discriminator": {
+                                "propertyName": "odata.type"
+                            },
+                            "properties": {
+                                "dataSource": {
+                                    "description": "the resource from which the rule collects its data. For this type dataSource will always be of type RuleMetricDataSource.",
+                                    "discriminator": {
+                                        "propertyName": "odata.type"
+                                    },
+                                    "properties": {
+                                        "resourceUri": {
+                                            "description": "the resource identifier of the resource the rule monitors. **NOTE**: this property cannot be updated for an existing rule.",
+                                            "type": "string"
+                                        },
+                                        "odata_type": {
+                                            "description": "specifies the type of data source. There are two types of rule data sources: RuleMetricDataSource and RuleManagementEventDataSource",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "odata.type"
+                                    ],
+                                    "type": "object"
+                                },
+                                "odata_type": {
+                                    "description": "specifies the type of condition. This can be one of three types: ManagementEventRuleCondition (occurrences of management events), LocationThresholdRuleCondition (based on the number of failures of a web test), and ThresholdRuleCondition (based on the threshold of a metric).",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "odata.type"
+                            ],
+                            "type": "object"
+                        },
+                        "description": {
+                            "description": "the description of the alert rule that will be included in the alert email.",
+                            "type": "string"
+                        },
+                        "isEnabled": {
+                            "description": "the flag that indicates whether the alert rule is enabled.",
+                            "type": "boolean"
+                        },
+                        "lastUpdatedTime": {
+                            "description": "Last time the rule was updated in ISO8601 format.",
+                            "format": "date-time",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "the name of the alert rule.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "name",
+                        "isEnabled",
+                        "condition"
+                    ]
+                },
+                "tags": {
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Resource tags"
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}
